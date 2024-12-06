@@ -89,3 +89,4 @@ D:\coding\Contact-management-system-by-f-\CMS\CMS.DBConnection\obj\Debug\net8.0\
 D:\coding\Contact-management-system-by-f-\CMS\CMS.DBConnection\obj\Debug\net8.0\CMS.DBConnection.pdb
 D:\coding\Contact-management-system-by-f-\CMS\CMS.DBConnection\obj\Debug\net8.0\CMS.DBConnection.genruntimeconfig.cache
 D:\coding\Contact-management-system-by-f-\CMS\CMS.DBConnection\obj\Debug\net8.0\ref\CMS.DBConnection.dll
+D:\coding\Contact-management-system-by-f-\CMS\CMS.DBConnection\obj\Debug\net8.0\CMS.DBConnection.sourcelink.json

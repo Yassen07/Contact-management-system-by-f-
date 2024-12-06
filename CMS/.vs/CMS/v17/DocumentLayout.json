@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "D:\\coding\\Contact-management-system-by-f-\\CMS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7737111A-E89A-46CC-869D-45BA0A74CAD4}|CMS.DBConnection\\CMS.DBConnection.fsproj|d:\\coding\\contact-management-system-by-f-\\cms\\cms.dbconnection\\program.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}",
-      "RelativeMoniker": "D:0:0:{7737111A-E89A-46CC-869D-45BA0A74CAD4}|CMS.DBConnection\\CMS.DBConnection.fsproj|solutionrelative:cms.dbconnection\\program.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}"
+      "AbsoluteMoniker": "D:0:0:{09FFD41C-3C31-4392-BE49-28A999009128}|CMS\\CMS.csproj|d:\\coding\\contact-management-system-by-f-\\cms\\cms\\cms.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{09FFD41C-3C31-4392-BE49-28A999009128}|CMS\\CMS.csproj|solutionrelative:cms\\cms.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19DA8DE6-EC22-4535-ADFD-F30D359C5F5B}|classFS\\classFS.fsproj|d:\\coding\\contact-management-system-by-f-\\cms\\classfs\\library.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}",
+      "RelativeMoniker": "D:0:0:{19DA8DE6-EC22-4535-ADFD-F30D359C5F5B}|classFS\\classFS.fsproj|solutionrelative:classfs\\library.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09FFD41C-3C31-4392-BE49-28A999009128}|CMS\\CMS.csproj|d:\\coding\\contact-management-system-by-f-\\cms\\cms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{09FFD41C-3C31-4392-BE49-28A999009128}|CMS\\CMS.csproj|solutionrelative:cms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09FFD41C-3C31-4392-BE49-28A999009128}|CMS\\CMS.csproj|d:\\coding\\contact-management-system-by-f-\\cms\\cms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09FFD41C-3C31-4392-BE49-28A999009128}|CMS\\CMS.csproj|solutionrelative:cms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19DA8DE6-EC22-4535-ADFD-F30D359C5F5B}|classFS\\classFS.fsproj|d:\\coding\\contact-management-system-by-f-\\cms\\classfs\\classfs.fsproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{19DA8DE6-EC22-4535-ADFD-F30D359C5F5B}|classFS\\classFS.fsproj|solutionrelative:classfs\\classfs.fsproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,20 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.fs",
-              "DocumentMoniker": "D:\\coding\\Contact-management-system-by-f-\\CMS\\CMS.DBConnection\\Program.fs",
-              "RelativeDocumentMoniker": "CMS.DBConnection\\Program.fs",
-              "ToolTip": "D:\\coding\\Contact-management-system-by-f-\\CMS\\CMS.DBConnection\\Program.fs*",
-              "RelativeToolTip": "CMS.DBConnection\\Program.fs*",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAACAAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-12-06T00:37:49.907Z",
+              "DocumentIndex": 4,
+              "Title": "classFS",
+              "DocumentMoniker": "D:\\coding\\Contact-management-system-by-f-\\CMS\\classFS\\classFS.fsproj",
+              "RelativeDocumentMoniker": "classFS\\classFS.fsproj",
+              "ToolTip": "D:\\coding\\Contact-management-system-by-f-\\CMS\\classFS\\classFS.fsproj",
+              "RelativeToolTip": "classFS\\classFS.fsproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001351|",
+              "WhenOpened": "2024-12-06T05:29:53.188Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Library.fs",
+              "DocumentMoniker": "D:\\coding\\Contact-management-system-by-f-\\CMS\\classFS\\Library.fs",
+              "RelativeDocumentMoniker": "classFS\\Library.fs",
+              "ToolTip": "D:\\coding\\Contact-management-system-by-f-\\CMS\\classFS\\Library.fs",
+              "RelativeToolTip": "classFS\\Library.fs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-06T05:29:38.63Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CMS",
+              "DocumentMoniker": "D:\\coding\\Contact-management-system-by-f-\\CMS\\CMS\\CMS.csproj",
+              "RelativeDocumentMoniker": "CMS\\CMS.csproj",
+              "ToolTip": "D:\\coding\\Contact-management-system-by-f-\\CMS\\CMS\\CMS.csproj",
+              "RelativeToolTip": "CMS\\CMS.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-12-06T05:28:11.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\coding\\Contact-management-system-by-f-\\CMS\\CMS\\Program.cs",
+              "RelativeDocumentMoniker": "CMS\\Program.cs",
+              "ToolTip": "D:\\coding\\Contact-management-system-by-f-\\CMS\\CMS\\Program.cs",
+              "RelativeToolTip": "CMS\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T05:27:41.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "D:\\coding\\Contact-management-system-by-f-\\CMS\\CMS\\Form1.cs",
+              "RelativeDocumentMoniker": "CMS\\Form1.cs",
+              "ToolTip": "D:\\coding\\Contact-management-system-by-f-\\CMS\\CMS\\Form1.cs [Design]",
+              "RelativeToolTip": "CMS\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T05:16:34.16Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

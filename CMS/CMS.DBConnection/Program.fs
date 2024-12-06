@@ -4,21 +4,11 @@ open Microsoft.Data.SqlClient
 open MySql.Data.MySqlClient
 
 
-// For more information see https://aka.ms/fsharp-console-apps
-
-// create connection data to Database
-
-
-
-// insert data in the data base 
-
-
-
-
+// start make connection with SQL database
 let retrieveData () =
+    // connection data 
     let connectionString = "Server=localhost;Database=tester;User Id=root;Password=;"
-    // connection done 
-    printfn "connection done"
+    printfn "connection start..."
     try
         use connection = new MySqlConnection(connectionString)
         connection.Open()
@@ -35,7 +25,6 @@ let retrieveData () =
     | ex -> printfn "Error: %s" ex.Message
 
 retrieveData ()
-
 
 printfn "Data Selected successfully!"
 

@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("CMS.DBConnection")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c16f250ec59544f3a6be44c5d82d0c4faf9399bc")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("CMS.DBConnection")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("CMS.DBConnection")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

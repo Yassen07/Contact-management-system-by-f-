@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "5Ev3GQtfUy0NGSlQh5KajvIzgyPsO89XnNT49luu6jHqZVCo26iRxxa23zKl+ISBEgxkDXgXQ72UcnbWCmmzqg==",
+  "success": true,
+  "projectFilePath": "D:\\coding\\Contact-management-system-by-f-\\CMS\\CMS\\CMS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mohe\\.nuget\\packages\\fsharp.core\\8.0.200\\fsharp.core.8.0.200.nupkg.sha512"
+  ],
+  "logs": []
+}

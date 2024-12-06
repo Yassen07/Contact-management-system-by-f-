@@ -44,7 +44,7 @@
             "FSharp.Core": {
               "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
               "target": "Package",
-              "version": "[8.0.200, )",
+              "version": "[9.0.100, )",
               "generatePathProperty": true
             },
             "Microsoft.Data.SqlClient": {
@@ -60,6 +60,11 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.9.0, )",
+              "generatePathProperty": true
+            },
+            "System.Reactive.Windows.Forms": {
+              "target": "Package",
+              "version": "[6.0.1, )",
               "generatePathProperty": true
             }
           },

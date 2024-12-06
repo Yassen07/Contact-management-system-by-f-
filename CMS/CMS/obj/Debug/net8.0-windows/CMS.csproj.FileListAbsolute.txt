@@ -1,0 +1,17 @@
+D:\coding\Contact-management-system-by-f-\CMS\CMS\bin\Debug\net8.0-windows\CMS.exe
+D:\coding\Contact-management-system-by-f-\CMS\CMS\bin\Debug\net8.0-windows\CMS.deps.json
+D:\coding\Contact-management-system-by-f-\CMS\CMS\bin\Debug\net8.0-windows\CMS.runtimeconfig.json
+D:\coding\Contact-management-system-by-f-\CMS\CMS\bin\Debug\net8.0-windows\CMS.dll
+D:\coding\Contact-management-system-by-f-\CMS\CMS\bin\Debug\net8.0-windows\CMS.pdb
+D:\coding\Contact-management-system-by-f-\CMS\CMS\obj\Debug\net8.0-windows\CMS.Form1.resources
+D:\coding\Contact-management-system-by-f-\CMS\CMS\obj\Debug\net8.0-windows\CMS.csproj.GenerateResource.cache
+D:\coding\Contact-management-system-by-f-\CMS\CMS\obj\Debug\net8.0-windows\CMS.GeneratedMSBuildEditorConfig.editorconfig
+D:\coding\Contact-management-system-by-f-\CMS\CMS\obj\Debug\net8.0-windows\CMS.AssemblyInfoInputs.cache
+D:\coding\Contact-management-system-by-f-\CMS\CMS\obj\Debug\net8.0-windows\CMS.AssemblyInfo.cs
+D:\coding\Contact-management-system-by-f-\CMS\CMS\obj\Debug\net8.0-windows\CMS.csproj.CoreCompileInputs.cache
+D:\coding\Contact-management-system-by-f-\CMS\CMS\obj\Debug\net8.0-windows\CMS.sourcelink.json
+D:\coding\Contact-management-system-by-f-\CMS\CMS\obj\Debug\net8.0-windows\CMS.dll
+D:\coding\Contact-management-system-by-f-\CMS\CMS\obj\Debug\net8.0-windows\refint\CMS.dll
+D:\coding\Contact-management-system-by-f-\CMS\CMS\obj\Debug\net8.0-windows\CMS.pdb
+D:\coding\Contact-management-system-by-f-\CMS\CMS\obj\Debug\net8.0-windows\CMS.genruntimeconfig.cache
+D:\coding\Contact-management-system-by-f-\CMS\CMS\obj\Debug\net8.0-windows\ref\CMS.dll
