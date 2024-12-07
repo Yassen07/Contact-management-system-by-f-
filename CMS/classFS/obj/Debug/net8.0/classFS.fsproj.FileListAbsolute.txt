@@ -1,0 +1,14 @@
+D:\coding\Contact-management-system-by-f-\CMS\classFS\bin\Debug\net8.0\classFS.deps.json
+D:\coding\Contact-management-system-by-f-\CMS\classFS\bin\Debug\net8.0\classFS.dll
+D:\coding\Contact-management-system-by-f-\CMS\classFS\bin\Debug\net8.0\classFS.pdb
+D:\coding\Contact-management-system-by-f-\CMS\classFS\bin\Debug\net8.0\classFS.xml
+D:\coding\Contact-management-system-by-f-\CMS\classFS\obj\Debug\net8.0\classFS.fsproj.AssemblyReference.cache
+D:\coding\Contact-management-system-by-f-\CMS\classFS\obj\Debug\net8.0\classFS.AssemblyInfoInputs.cache
+D:\coding\Contact-management-system-by-f-\CMS\classFS\obj\Debug\net8.0\classFS.AssemblyInfo.fs
+D:\coding\Contact-management-system-by-f-\CMS\classFS\obj\Debug\net8.0\classFS.fsproj.CoreCompileInputs.cache
+D:\coding\Contact-management-system-by-f-\CMS\classFS\obj\Debug\net8.0\classFS.sourcelink.json
+D:\coding\Contact-management-system-by-f-\CMS\classFS\obj\Debug\net8.0\classFS.dll
+D:\coding\Contact-management-system-by-f-\CMS\classFS\obj\Debug\net8.0\refint\classFS.dll
+D:\coding\Contact-management-system-by-f-\CMS\classFS\obj\Debug\net8.0\classFS.xml
+D:\coding\Contact-management-system-by-f-\CMS\classFS\obj\Debug\net8.0\classFS.pdb
+D:\coding\Contact-management-system-by-f-\CMS\classFS\obj\Debug\net8.0\ref\classFS.dll

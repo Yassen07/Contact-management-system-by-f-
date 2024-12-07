@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("classFS")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c16f250ec59544f3a6be44c5d82d0c4faf9399bc")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21c821c527d3eaf5d01cccef45dc321e39e62eec")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("classFS")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("classFS")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
