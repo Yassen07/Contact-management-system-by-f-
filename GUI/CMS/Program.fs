@@ -39,13 +39,13 @@ let main argv =
                 use reader = command.ExecuteReader()
 
                 if reader.Read() then
-                    // Populate the GUI fields with the retrieved data
                     nameTextBox.Text <- reader.GetString(0)
                     numberTextBox.Text <- reader.GetInt32(1).ToString()
                     emailTextBox.Text <- reader.GetString(2)
                 else
-                    // Show a "not found" message if no data is found
                     MessageBox.Show("Not found any data about this input.") |> ignore
+
+                reader.Close()
         with
         | ex -> MessageBox.Show($"Error: {ex.Message}") |> ignore
     )
@@ -80,14 +80,89 @@ let main argv =
         | ex -> MessageBox.Show($"Error: {ex.Message}") |> ignore
     )
 
+    // زر "Edit"
+    let editButton = new Button(Text = "Edit", Top = 260, Left = 140, Width = 100)
+    editButton.Click.Add(fun _ ->
+        try
+            let name = nameTextBox.Text
+            let email = emailTextBox.Text
+            let number = numberTextBox.Text
+            let searchValue = searchTextBox.Text
+
+            if String.IsNullOrWhiteSpace(name) || String.IsNullOrWhiteSpace(email) || String.IsNullOrWhiteSpace(number) then
+                MessageBox.Show("Please fill all fields to update.") |> ignore
+            else
+                let connectionString = "Server=localhost;Database=tester;User Id=root;Password=;"
+                use connection = new MySqlConnection(connectionString)
+                connection.Open()
+
+                let queryCheckNumber = "SELECT number FROM data_of_a7 WHERE number = @searchNumber"
+                use commandCheckNumber = new MySqlCommand(queryCheckNumber, connection)
+                commandCheckNumber.Parameters.AddWithValue("@searchNumber", Int32.Parse(searchValue)) |> ignore
+                use readerCheck = commandCheckNumber.ExecuteReader()
+
+                if readerCheck.Read() && readerCheck.GetInt32(0) <> Int32.Parse(number) then
+                    MessageBox.Show("Cannot edit the ID.") |> ignore
+                else
+                    readerCheck.Close()
+
+                    let updateQuery = "UPDATE data_of_a7 SET name = @name, email = @email WHERE number = @searchNumber"
+                    use updateCommand = new MySqlCommand(updateQuery, connection)
+                    updateCommand.Parameters.AddWithValue("@name", name) |> ignore
+                    updateCommand.Parameters.AddWithValue("@email", email) |> ignore
+                    updateCommand.Parameters.AddWithValue("@searchNumber", Int32.Parse(searchValue)) |> ignore
+
+                    let rowsAffected = updateCommand.ExecuteNonQuery()
+                    if rowsAffected > 0 then
+                        MessageBox.Show("Data updated successfully!") |> ignore
+                    else
+                        MessageBox.Show("Failed to update data.") |> ignore
+        with
+        | ex -> MessageBox.Show($"Error: {ex.Message}") |> ignore
+    )
+
+    // زر "Delete"
+    let deleteButton = new Button(Text = "Delete", Top = 260, Left = 20, Width = 100)
+    deleteButton.Click.Add(fun _ ->
+        try
+            let searchValue = searchTextBox.Text
+
+            if String.IsNullOrWhiteSpace(searchValue) then
+                MessageBox.Show("Please enter a number to delete.") |> ignore
+            else
+                let connectionString = "Server=localhost;Database=tester;User Id=root;Password=;"
+                use connection = new MySqlConnection(connectionString)
+                connection.Open()
+
+                let query = "DELETE FROM data_of_a7 WHERE number = @number"
+                use command = new MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@number", Int32.Parse(searchValue)) |> ignore
+
+                let rowsAffected = command.ExecuteNonQuery()
+                if rowsAffected > 0 then
+                    MessageBox.Show("Data deleted successfully!") |> ignore
+                else
+                    MessageBox.Show("Failed to delete data.") |> ignore
+        with
+        | ex -> MessageBox.Show($"Error: {ex.Message}") |> ignore
+    )
+
+    // زر "Clear"
+    let clearButton = new Button(Text = "Clear", Top = 260, Left = 380, Width = 100)
+    clearButton.Click.Add(fun _ ->
+        nameTextBox.Text <- ""
+        numberTextBox.Text <- ""
+        emailTextBox.Text <- ""
+        searchTextBox.Text <- ""
+    )
+
     // إضافة كل العناصر للنافذة
     form.Controls.AddRange(
         [| nameLabel; nameTextBox;
            numberLabel; numberTextBox;
            emailLabel; emailTextBox;
-
            searchLabel; searchTextBox; searchButton;
-           addButton |]
+           addButton; editButton; deleteButton; clearButton |]
     )
 
     // تشغيل التطبيق
