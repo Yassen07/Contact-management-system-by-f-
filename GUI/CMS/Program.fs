@@ -1,6 +1,5 @@
 ﻿open System
 open System.Windows.Forms
-open System.Data
 open Microsoft.Data.SqlClient
 open MySql.Data.MySqlClient
 
@@ -14,14 +13,14 @@ let retrieveData () =
         use connection = new MySqlConnection(connectionString)
         connection.Open()
         printfn "Connection successful"
-        let query = "SELECT Id, Name, Age FROM SampleTable"
+        let query = "SELECT name, number, email FROM data_of_a7"
         use command = new MySqlCommand(query, connection)
         use reader = command.ExecuteReader()
         while reader.Read() do
-            let id = reader.GetInt32(0)
-            let name = reader.GetString(1)
-            let age = reader.GetInt32(2)
-            printfn "Id: %d, Name: %s, Age: %d" id name age
+            let name = reader.GetString(0)
+            let number = reader.GetInt32(1)
+            let email = reader.GetString(2)
+            printfn "name: %s, number: %d, email: %s" name number email
     with
     | ex -> printfn "Error: %s" ex.Message
 
@@ -40,8 +39,6 @@ let main argv =
     let emailLabel = new Label(Text = "Email:", AutoSize = true, Top = 100, Left = 20)
     let emailTextBox = new TextBox(Width = 200, Top = 100, Left = 80)
 
-   
-
     // زر "Search"
     let searchLabel = new Label(Text = "Search:", AutoSize = true, Top = 200, Left = 20)
     let searchTextBox = new TextBox(Width = 200, Top = 200, Left = 80)
@@ -50,16 +47,6 @@ let main argv =
     searchButton.Click.Add(fun _ ->
         MessageBox.Show(sprintf "Searching for: %s" searchTextBox.Text)
         retrieveData()
-
-
-        printfn "Data inserted successfully!"
-
-        printfn "Hello from F#"
-
-        
-        
-        
-        |> ignore
     )
 
     // زر "Edit"
@@ -74,6 +61,36 @@ let main argv =
         MessageBox.Show("Delete functionality not implemented yet.") |> ignore
     )
 
+    // زر "Add"
+    let addButton = new Button(Text = "Add", Top = 260, Left = 260, Width = 100)
+    addButton.Click.Add(fun _ ->
+        try
+            let name = nameTextBox.Text
+            let email = emailTextBox.Text
+            let number = numberTextBox.Text
+
+            if String.IsNullOrWhiteSpace(name) || String.IsNullOrWhiteSpace(email) || String.IsNullOrWhiteSpace(number) then
+                MessageBox.Show("Please fill all fields.") |> ignore
+            else
+                let connectionString = "Server=localhost;Database=tester;User Id=root;Password=;"
+                use connection = new MySqlConnection(connectionString)
+                connection.Open()
+
+                let query = "INSERT INTO data_of_a7 (name, number,email) VALUES (@name, @number, @email)"
+                use command = new MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@name", name) |> ignore
+                command.Parameters.AddWithValue("@number", Int32.Parse(number)) |> ignore
+                command.Parameters.AddWithValue("@email", email) |> ignore
+
+                let rowsAffected = command.ExecuteNonQuery()
+                if rowsAffected > 0 then
+                    MessageBox.Show("Data added successfully!") |> ignore
+                else
+                    MessageBox.Show("Failed to add data.") |> ignore
+        with
+        | ex -> MessageBox.Show($"Error: {ex.Message}") |> ignore
+    )
+
     // إضافة كل العناصر للنافذة
     form.Controls.AddRange(
         [| nameLabel; nameTextBox;
@@ -81,7 +98,7 @@ let main argv =
            emailLabel; emailTextBox;
 
            searchLabel; searchTextBox; searchButton;
-           editButton; deleteButton |]
+           editButton; deleteButton; addButton |]
     )
 
 // Run the application
