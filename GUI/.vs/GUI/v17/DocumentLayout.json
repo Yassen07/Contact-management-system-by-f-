@@ -5,10 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E74816DF-9D7A-4F8F-8898-98DD08E6148E}|CMS\\CMS.fsproj|d:\\coding\\contact-management-system-by-f-\\gui\\cms\\program.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}",
       "RelativeMoniker": "D:0:0:{E74816DF-9D7A-4F8F-8898-98DD08E6148E}|CMS\\CMS.fsproj|solutionrelative:cms\\program.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E74816DF-9D7A-4F8F-8898-98DD08E6148E}|CMS\\CMS.fsproj|d:\\coding\\contact-management-system-by-f-\\gui\\cms\\cms.fsproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{E74816DF-9D7A-4F8F-8898-98DD08E6148E}|CMS\\CMS.fsproj|solutionrelative:cms\\cms.fsproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,20 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CMS.fsproj",
-              "DocumentMoniker": "D:\\coding\\Contact-management-system-by-f-\\GUI\\CMS\\CMS.fsproj",
-              "RelativeDocumentMoniker": "CMS\\CMS.fsproj",
-              "ToolTip": "D:\\coding\\Contact-management-system-by-f-\\GUI\\CMS\\CMS.fsproj",
-              "RelativeToolTip": "CMS\\CMS.fsproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001351|",
-              "WhenOpened": "2024-12-06T06:48:56.374Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -40,7 +24,7 @@
               "RelativeDocumentMoniker": "CMS\\Program.fs",
               "ToolTip": "D:\\coding\\Contact-management-system-by-f-\\GUI\\CMS\\Program.fs",
               "RelativeToolTip": "CMS\\Program.fs",
-              "ViewState": "AQIAAIIAAAAAAAAAAAAiwJAAAABHAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAK0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2024-12-06T06:28:05.367Z",
               "EditorCaption": ""

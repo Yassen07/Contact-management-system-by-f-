@@ -1,170 +1,173 @@
 ﻿open System
+open System.IO
+open System.Text.Json
 open System.Windows.Forms
-open MySql.Data.MySqlClient
+open System.Collections.Generic
+
+// Define a record type for contact data
+type Contact = {
+    Name: string
+    Number: string
+    Email: string
+}
 
 [<EntryPoint>]
 let main argv =
-    // إنشاء النافذة الرئيسية
-    let form = new Form(Text = "F# CRUD App", Width = 600, Height = 400)
+    // File path for the JSON file
+    let filePath = "contacts.json"
 
-    // إنشاء الحقول
-    let nameLabel = new Label(Text = "Name:", AutoSize = true, Top = 20, Left = 20)
-    let nameTextBox = new TextBox(Width = 200, Top = 20, Left = 80)
+    // Load contacts from the JSON file
+    let loadContacts () =
+        if File.Exists(filePath) then
+            let json = File.ReadAllText(filePath)
+            JsonSerializer.Deserialize<List<Contact>>(json)
+        else
+            new List<Contact>()
 
-    let numberLabel = new Label(Text = "Number:", AutoSize = true, Top = 60, Left = 20)
-    let numberTextBox = new TextBox(Width = 200, Top = 60, Left = 80)
+    // Save contacts to the JSON file
+    let saveContacts (contacts: List<Contact>) =
+        let json = JsonSerializer.Serialize(contacts)
+        File.WriteAllText(filePath, json)
 
-    let emailLabel = new Label(Text = "Email:", AutoSize = true, Top = 100, Left = 20)
-    let emailTextBox = new TextBox(Width = 200, Top = 100, Left = 80)
+    // Main form`
+    let form = new Form(Text = "Contact Management System", Width = 890, Height = 330)
 
-    // زر "Search"
-    let searchLabel = new Label(Text = "Search:", AutoSize = true, Top = 200, Left = 20)
-    let searchTextBox = new TextBox(Width = 200, Top = 200, Left = 80)
+    // DataGridView to display data
+    let dataGridView = new DataGridView(Width = 350, Height = 200, Top = 20, Left = 500)
+    dataGridView.ReadOnly <- true
+    dataGridView.AutoSizeColumnsMode <- DataGridViewAutoSizeColumnsMode.Fill
 
-    let searchButton = new Button(Text = "Search", Top = 200, Left = 300, Width = 100)
-    searchButton.Click.Add(fun _ ->
-        try
-            let searchValue = searchTextBox.Text
-            if String.IsNullOrWhiteSpace(searchValue) then
-                MessageBox.Show("Please enter a number to search.") |> ignore
-            else
-                let connectionString = "Server=localhost;Database=tester;User Id=root;Password=;"
-                use connection = new MySqlConnection(connectionString)
-                connection.Open()
+    // Load data into DataGridView
+    let loadData () =
+        let contacts = loadContacts() |> Seq.toList
+        dataGridView.DataSource <- contacts |> List.toArray
 
-                let query = "SELECT name, number, email FROM data_of_a7 WHERE number = @number"
-                use command = new MySqlCommand(query, connection)
-                command.Parameters.AddWithValue("@number", Int32.Parse(searchValue)) |> ignore
+    // Refresh button
+    let refreshButton = new Button(Text = "Refresh", Top = 230, Left = 620, Width = 100)
+    refreshButton.Click.Add(fun _ -> loadData())
 
-                use reader = command.ExecuteReader()
+    // UI elements
+    let nameLabel = new Label(Text = "Name:", AutoSize = true, Top = 110, Left = 20)
+    let nameTextBox = new TextBox(Width = 280, Top = 110, Left = 80)
 
-                if reader.Read() then
-                    nameTextBox.Text <- reader.GetString(0)
-                    numberTextBox.Text <- reader.GetInt32(1).ToString()
-                    emailTextBox.Text <- reader.GetString(2)
-                else
-                    MessageBox.Show("Not found any data about this input.") |> ignore
+    let numberLabel = new Label(Text = "Number:", AutoSize = true, Top = 150, Left = 20)
+    let numberTextBox = new TextBox(Width = 280, Top = 150, Left = 80)
 
-                reader.Close()
-        with
-        | ex -> MessageBox.Show($"Error: {ex.Message}") |> ignore
+    let emailLabel = new Label(Text = "Email:", AutoSize = true, Top = 190, Left = 20)
+    let emailTextBox = new TextBox(Width = 280, Top = 190, Left = 80)
+
+    // Search by number
+    let searchNLabel = new Label(Text = "Search by Number:", AutoSize = true, Top = 20, Left = 20)
+    let searchNTextBox = new TextBox(Width = 210, Top = 20, Left = 150, MaxLength = 11)
+    let searchNumButton = new Button(Text = "Search", Top = 20, Left = 370, Width = 100)
+
+    searchNumButton.Click.Add(fun _ ->
+        let searchValue = searchNTextBox.Text
+        let contacts = loadContacts() |> Seq.toList
+        match contacts |> List.tryFind (fun c -> c.Number = searchValue) with
+        | Some contact ->
+            nameTextBox.Text <- contact.Name
+            numberTextBox.Text <- contact.Number
+            emailTextBox.Text <- contact.Email
+        | None -> MessageBox.Show("This number does not exist.") |> ignore
     )
 
-    // زر "Add"
-    let addButton = new Button(Text = "Add", Top = 260, Left = 260, Width = 100)
+    // Search by name
+    let searchNameLabel = new Label(Text = "Search by Name:", AutoSize = true, Top = 60, Left = 20)
+    let searchNameTextBox = new TextBox(Width = 210, Top = 60, Left = 150)
+    let searchNameButton = new Button(Text = "Search", Top = 60, Left = 370, Width = 100)
+
+    searchNameButton.Click.Add(fun _ ->
+        let searchValue = searchNameTextBox.Text
+        let contacts = loadContacts() |> Seq.toList
+        match contacts |> List.tryFind (fun c -> c.Name.Equals(searchValue, StringComparison.OrdinalIgnoreCase)) with
+        | Some contact ->
+            nameTextBox.Text <- contact.Name
+            numberTextBox.Text <- contact.Number
+            emailTextBox.Text <- contact.Email
+        | None -> MessageBox.Show("This name does not exist.") |> ignore
+    )
+
+    // Add button
+    let addButton = new Button(Text = "Add", Top = 230, Left = 260, Width = 100)
     addButton.Click.Add(fun _ ->
-        try
-            let name = nameTextBox.Text
-            let email = emailTextBox.Text
-            let number = numberTextBox.Text
-
-            if String.IsNullOrWhiteSpace(name) || String.IsNullOrWhiteSpace(email) || String.IsNullOrWhiteSpace(number) then
-                MessageBox.Show("Please fill all fields.") |> ignore
+        let name = nameTextBox.Text
+        let email = emailTextBox.Text
+        let number = numberTextBox.Text
+        if not (String.IsNullOrWhiteSpace(name) || String.IsNullOrWhiteSpace(email) || String.IsNullOrWhiteSpace(number)) then
+            let contacts = loadContacts() |> Seq.toList
+            if contacts |> List.exists (fun c -> c.Number = number) then
+                MessageBox.Show("A contact with this number already exists.") |> ignore
             else
-                let connectionString = "Server=localhost;Database=tester;User Id=root;Password=;"
-                use connection = new MySqlConnection(connectionString)
-                connection.Open()
-
-                let query = "INSERT INTO data_of_a7 (name, number, email) VALUES (@name, @number, @email)"
-                use command = new MySqlCommand(query, connection)
-                command.Parameters.AddWithValue("@name", name) |> ignore
-                command.Parameters.AddWithValue("@number", Int32.Parse(number)) |> ignore
-                command.Parameters.AddWithValue("@email", email) |> ignore
-
-                let rowsAffected = command.ExecuteNonQuery()
-                if rowsAffected > 0 then
-                    MessageBox.Show("Data added successfully!") |> ignore
-                else
-                    MessageBox.Show("Failed to add data.") |> ignore
-        with
-        | ex -> MessageBox.Show($"Error: {ex.Message}") |> ignore
+                let newContact = { Name = name; Number = number; Email = email }
+                let updatedContacts = new List<Contact>(contacts)
+                updatedContacts.Add(newContact)
+                saveContacts(updatedContacts)
+                MessageBox.Show("Contact added successfully.") |> ignore
+                loadData()
+        else
+            MessageBox.Show("Please enter valid data.") |> ignore
     )
 
-    // زر "Edit"
-    let editButton = new Button(Text = "Edit", Top = 260, Left = 140, Width = 100)
+    // Edit button
+    let editButton = new Button(Text = "Edit", Top = 230, Left = 140, Width = 100)
     editButton.Click.Add(fun _ ->
-        try
-            let name = nameTextBox.Text
-            let email = emailTextBox.Text
-            let number = numberTextBox.Text
-            let searchValue = searchTextBox.Text
-
-            if String.IsNullOrWhiteSpace(name) || String.IsNullOrWhiteSpace(email) || String.IsNullOrWhiteSpace(number) then
-                MessageBox.Show("Please fill all fields to update.") |> ignore
-            else
-                let connectionString = "Server=localhost;Database=tester;User Id=root;Password=;"
-                use connection = new MySqlConnection(connectionString)
-                connection.Open()
-
-                let queryCheckNumber = "SELECT number FROM data_of_a7 WHERE number = @searchNumber"
-                use commandCheckNumber = new MySqlCommand(queryCheckNumber, connection)
-                commandCheckNumber.Parameters.AddWithValue("@searchNumber", Int32.Parse(searchValue)) |> ignore
-                use readerCheck = commandCheckNumber.ExecuteReader()
-
-                if readerCheck.Read() && readerCheck.GetInt32(0) <> Int32.Parse(number) then
-                    MessageBox.Show("Cannot edit the ID.") |> ignore
-                else
-                    readerCheck.Close()
-
-                    let updateQuery = "UPDATE data_of_a7 SET name = @name, email = @email WHERE number = @searchNumber"
-                    use updateCommand = new MySqlCommand(updateQuery, connection)
-                    updateCommand.Parameters.AddWithValue("@name", name) |> ignore
-                    updateCommand.Parameters.AddWithValue("@email", email) |> ignore
-                    updateCommand.Parameters.AddWithValue("@searchNumber", Int32.Parse(searchValue)) |> ignore
-
-                    let rowsAffected = updateCommand.ExecuteNonQuery()
-                    if rowsAffected > 0 then
-                        MessageBox.Show("Data updated successfully!") |> ignore
-                    else
-                        MessageBox.Show("Failed to update data.") |> ignore
-        with
-        | ex -> MessageBox.Show($"Error: {ex.Message}") |> ignore
+        let name = nameTextBox.Text
+        let email = emailTextBox.Text
+        let number = numberTextBox.Text
+        if not (String.IsNullOrWhiteSpace(name) || String.IsNullOrWhiteSpace(email) || String.IsNullOrWhiteSpace(number)) then
+            let contacts = loadContacts() |> Seq.toList
+            match contacts |> List.tryFindIndex (fun c -> c.Number = number) with
+            | Some index ->
+                let updatedContacts = new List<Contact>(contacts)
+                updatedContacts.[index] <- { Name = name; Number = number; Email = email }
+                saveContacts(updatedContacts)
+                MessageBox.Show("Contact updated successfully.") |> ignore
+                loadData()
+            | None -> MessageBox.Show("Contact not found.") |> ignore
+        else
+            MessageBox.Show("Please enter valid data.") |> ignore
     )
 
-    // زر "Delete"
-    let deleteButton = new Button(Text = "Delete", Top = 260, Left = 20, Width = 100)
+    // Delete button
+    let deleteButton = new Button(Text = "Delete", Top = 230, Left = 20, Width = 100)
     deleteButton.Click.Add(fun _ ->
-        try
-            let searchValue = searchTextBox.Text
-
-            if String.IsNullOrWhiteSpace(searchValue) then
-                MessageBox.Show("Please enter a number to delete.") |> ignore
+        let number = numberTextBox.Text
+        if not (String.IsNullOrWhiteSpace(number)) then
+            let contacts = loadContacts() |> Seq.toList
+            let updatedContacts = contacts |> List.filter (fun c -> c.Number <> number)
+            if updatedContacts.Length < contacts.Length then
+                saveContacts(new List<Contact>(updatedContacts))
+                MessageBox.Show("Contact deleted successfully.") |> ignore
+                loadData()
             else
-                let connectionString = "Server=localhost;Database=tester;User Id=root;Password=;"
-                use connection = new MySqlConnection(connectionString)
-                connection.Open()
-
-                let query = "DELETE FROM data_of_a7 WHERE number = @number"
-                use command = new MySqlCommand(query, connection)
-                command.Parameters.AddWithValue("@number", Int32.Parse(searchValue)) |> ignore
-
-                let rowsAffected = command.ExecuteNonQuery()
-                if rowsAffected > 0 then
-                    MessageBox.Show("Data deleted successfully!") |> ignore
-                else
-                    MessageBox.Show("Failed to delete data.") |> ignore
-        with
-        | ex -> MessageBox.Show($"Error: {ex.Message}") |> ignore
+                MessageBox.Show("Contact not found.") |> ignore
+        else
+            MessageBox.Show("Please enter a valid number.") |> ignore
     )
 
-    // زر "Clear"
-    let clearButton = new Button(Text = "Clear", Top = 260, Left = 380, Width = 100)
+    // Clear button
+    let clearButton = new Button(Text = "Clear", Top = 110, Left = 370, Width = 100)
     clearButton.Click.Add(fun _ ->
         nameTextBox.Text <- ""
         numberTextBox.Text <- ""
         emailTextBox.Text <- ""
-        searchTextBox.Text <- ""
     )
 
-    // إضافة كل العناصر للنافذة
+    // Add controls to the form
     form.Controls.AddRange(
-        [| nameLabel; nameTextBox;
+        [| dataGridView; refreshButton;
+           searchNLabel; searchNTextBox; searchNumButton;
+           searchNameLabel; searchNameTextBox; searchNameButton;
+           nameLabel; nameTextBox;
            numberLabel; numberTextBox;
            emailLabel; emailTextBox;
-           searchLabel; searchTextBox; searchButton;
            addButton; editButton; deleteButton; clearButton |]
     )
 
-    // تشغيل التطبيق
+    // Initial data load
+    loadData()
+
+    // Run application
     Application.Run(form)
     0
